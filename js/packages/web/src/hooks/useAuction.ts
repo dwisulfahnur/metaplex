@@ -32,11 +32,12 @@ export const useAuction = (id: StringPublicKey) => {
     bidRedemptionV2sByAuctionManagerAndWinningIndex,
     auctionDataExtended,
     metadataByAuction,
+    isLoading,
   } = useMeta();
 
   useEffect(() => {
     const auction = auctions[id];
-    if (auction) {
+    if (!isLoading && auction) {
       const auctionView = processAccountsIntoAuctionView(
         walletPubkey,
         auction,
@@ -55,7 +56,7 @@ export const useAuction = (id: StringPublicKey) => {
         metadataByMasterEdition,
         cachedRedemptionKeys,
         metadataByAuction,
-        undefined
+        undefined,
       );
 
       if (auctionView) setAuctionView(auctionView);
@@ -77,6 +78,7 @@ export const useAuction = (id: StringPublicKey) => {
     metadataByMasterEdition,
     cachedRedemptionKeys,
     metadataByAuction,
+    isLoading,
   ]);
   return existingAuctionView;
 };

@@ -122,6 +122,7 @@ function ArtistModal({
   return (
     <>
       <Modal
+        className={'modal-box'}
         title="Add New Artist Address"
         visible={modalOpen}
         onOk={() => {
@@ -268,7 +269,7 @@ function InnerAdminView({
   ];
 
   return (
-    <Content>
+    <Content className={'admin-content'}>
       <Col style={{ marginTop: 10 }}>
         <Row>
           <Col span={21}>
@@ -304,7 +305,7 @@ function InnerAdminView({
               unCheckedChildren="Whitelist Only"
               checked={newStore.public}
               onChange={val => {
-                setNewStore(_ => {
+                setNewStore(() => {
                   const newS = new Store(store.info);
                   newS.public = val;
                   return newS;
@@ -364,7 +365,9 @@ function InnerAdminView({
         </>
       )}
       <Col>
-        <p style={{'marginTop': '30px'}}>Upgrade the performance of your existing auctions.</p>
+        <p style={{ marginTop: '30px' }}>
+          Upgrade the performance of your existing auctions.
+        </p>
         <Row>
           <Button
             disabled={loading}
